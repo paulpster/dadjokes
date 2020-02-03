@@ -1,0 +1,18 @@
+@page
+@model SearchModel
+@{
+    ViewData["Title"] = "Joke Search";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>This page is to allow the search and display of dad jokes.</p>
+<form method="post">
+    <label asp-for="term">Joke Search:</label>
+    <input asp-for="term" type="text" />
+    <button type="submit" asp-page-handler="Click">Search</button>
+</form>
+<ul>
+    @foreach(var item in Model.jokes){
+        <li>@Html.Raw(Model.ReplaceTerm(item))</li>
+    }
+</ul>

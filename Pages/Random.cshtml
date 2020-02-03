@@ -1,0 +1,40 @@
+@page
+@model RandomModel
+@{
+    ViewData["Title"] = "Random Joke";
+    <script type="text/javascript">
+        // this is all about getting the 10 second reload
+        // I am sure there are other ways....
+        var toHandle = function() {
+            var btn = document.getElementById("refresh");
+            console.log("made it to toHandle");
+            btn.click();
+            timeOut();
+        }
+
+        var timeOut = function() {
+            console.log("made it to timeOut");
+            setTimeout(toHandle, 10000);
+        }
+        timeOut();
+    </script>
+
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to display a random joke every 10 seconds.</p>
+<!-- I would have loved to put these in a css file, but the builder did not take my changes in site.css -->
+<form method="get">
+    <div id="randomdiv" style="background-image: url(background.png);
+    background-size: cover;
+    width: 75vw;height:57vh">
+        <p style="    width: 41vw;
+    background-color: white;
+    position: relative;
+    top: 19vh;
+    left: 4vw;font-size:1.4rem">@Model.recentJoke</p>
+    </div>
+    <button id="refresh" type="submit" style="visibility:hidden;" />
+</form>
+
